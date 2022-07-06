@@ -8,8 +8,13 @@ module.exports = override(
   useBabelRc(),
   addWebpackAlias({
     "@src": resolve("./"),
-    "@Style": resolve("./src/Common/Style/"),
+    "@Common": resolve("./src/_Common/"),
+    "@Three": resolve("./src/_Common/Three/index.tsx"),
+    "@Style": resolve("./src/_Common/Style/"),
     "@HOC": resolve("./src/HOC/"),
+    "@Atom": resolve("./src/Atom/"),
+    "@Molecules": resolve("./src/Molecules/"),
+    "@Organism": resolve("./src/Organism/"),
     "@Page": resolve("./src/Page/"),
   })
 );

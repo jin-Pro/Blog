@@ -3,8 +3,13 @@
     "baseUrl": "./src",
     "paths": {
       "@src/*": ["./*"],
-      "@Style/*": ["./Common/Style/*"],
+      "@Common/*": ["./_Common/*"],
+      "@Three": ["./_Common/Three/index.tsx"],
+      "@Style/*": ["./_Common/Style/*"],
       "@HOC/*": ["./HOC/*"],
+      "@Atom/*": ["./Atom/*"],
+      "@Molecules/*": ["./Molecules/*"],
+      "@Organism/*": ["./Organism/*"],
       "@Page/*": ["./Page/*"]
     }
   }
