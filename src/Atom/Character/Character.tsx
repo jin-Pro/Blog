@@ -1,9 +1,8 @@
 import { useFBX, useSphere } from "@Three";
+import { useCharacterAnimation } from "./Animation/Animation";
+import { useCharacterMove } from "./Move/Move";
 
 export const Character: React.FC = () => {
-  // const {
-  //   position: { x, y, z },
-  // } = characterState;
   const temp = useFBX(`./3D/character.fbx?${new Date()}`);
 
   const [ref, api] = useSphere(() => ({
@@ -13,9 +12,7 @@ export const Character: React.FC = () => {
     type: "Dynamic",
   }));
 
-  // actions.current[idx] = useGetAnimations({ animationSrcs, ref });
-  // characterRefs.current[idx] = ref;
-  // apis.current[idx] = api;
+  useCharacterMove(api, useCharacterAnimation(ref));
 
   return (
     <group ref={ref as any} scale={0.03}>

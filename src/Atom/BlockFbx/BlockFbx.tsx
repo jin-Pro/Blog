@@ -1,7 +1,7 @@
 import { useFBX } from "@Three";
-import { FBXType } from "../FBX";
-import { 포지션 } from "./BlockFbx.c";
-import { useBlockFbxData, useBlockFbxRef } from "./BlockFbx.h";
+import { FBXType } from "../FBX/FBX";
+import { 포지션 } from "./BlockFbx.const";
+import { useBlockFbxData, useBlockFbxRef } from "./BlockFbx.hook";
 
 export const BlockFbx: React.FC<FBXType> = ({ src }) => {
   const fbx = useFBX(src);

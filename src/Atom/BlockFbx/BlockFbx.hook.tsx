@@ -7,7 +7,7 @@ import {
   Group,
 } from "@Three";
 
-import { 옵션, makeVertices, 포지션, 로테이션 } from "./BlockFbx.c";
+import { 옵션, makeVertices, 포지션, 로테이션 } from "./BlockFbx.const";
 
 export const useBlockFbxData: useBlockFbxDataType = (fbx) => {
   const { geometry, material } = fbx.children[0] as fbxChildrenType;

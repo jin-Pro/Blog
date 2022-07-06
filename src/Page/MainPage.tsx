@@ -1,9 +1,6 @@
-import { Suspense } from "react";
-import { Physics, Html, Canvas } from "@Three";
-import { Character, Layout } from "@Atom/.";
-import { LoadingPage } from ".";
-import { StaticModel } from "@Molecules/.";
-// import Keyboard from "@Common/Three/Keyboard";
+import { Canvas } from "@Three";
+import { Layout } from "@Atom/.";
+import { ThreeComponent } from "@Organism/.";
 
 export const MainPage: React.FC = () => {
   return (
@@ -11,21 +8,7 @@ export const MainPage: React.FC = () => {
       <Canvas>
         <ambientLight />
         <pointLight position={[100, 100, 100]} intensity={1} />
-        <Physics gravity={[0, 0, 0]}>
-          <Suspense
-            fallback={
-              <Html>
-                <LoadingPage />
-              </Html>
-            }
-          >
-            <StaticModel />
-          </Suspense>
-          <Suspense fallback={null}>
-            <Character />
-          </Suspense>
-        </Physics>
-        {/* <Keyboard /> */}
+        <ThreeComponent />
       </Canvas>
     </Layout>
   );

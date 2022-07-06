@@ -7,7 +7,6 @@ const resolve = (src) => path.resolve(__dirname, src);
 module.exports = override(
   useBabelRc(),
   addWebpackAlias({
-    "@src": resolve("./"),
     "@Common": resolve("./src/_Common/"),
     "@Three": resolve("./src/_Common/Three/index.tsx"),
     "@Style": resolve("./src/_Common/Style/"),

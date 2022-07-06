@@ -1,1 +1,1 @@
-export * from "./StaticModel";
+export * from "./StaticModel/StaticModel";
