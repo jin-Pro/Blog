@@ -1,11 +1,13 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { MainPage } from "@Page/.";
 
-function App() {
-<<<<<<< HEAD
-  return <div>hi</div>;
-=======
-  return <div>hihi</div>;
->>>>>>> 59bd374 (init)
-}
+const App: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+    </Routes>
+  );
+};
 
 export default App;
