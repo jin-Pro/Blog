@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { ChildProps } from "..";
 
 export const Flex: React.FC<Props> = ({ children, ...props }) => {
   return <FlexContainer {...props}>{children}</FlexContainer>;
 };
 
-const FlexContainer = styled.div<propsType>`
+const FlexContainer = styled.div<StyleType>`
   display: flex;
   justify-content: ${({ justify }) => justify || "center"};
   align-items: ${({ align }) => align || "center"};
@@ -12,12 +13,10 @@ const FlexContainer = styled.div<propsType>`
   height: ${({ height }) => height || "100%"};
 `;
 
-type propsType = {
+type StyleType = {
   justify?: string;
   align?: string;
   width?: string;
   height?: string;
 };
-type Props = propsType & {
-  children: React.ReactNode;
-};
+type Props = StyleType & ChildProps;

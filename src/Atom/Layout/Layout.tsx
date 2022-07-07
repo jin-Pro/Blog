@@ -1,9 +1,6 @@
+import { ChildProps } from "..";
 import { Container } from "./Layout.style";
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
-
-export const Layout: React.FC<LayoutProps> = ({ children }) => (
+export const Layout: React.FC<ChildProps> = ({ children }) => (
   <Container>{children}</Container>
 );
