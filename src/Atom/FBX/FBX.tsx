@@ -1,3 +1,4 @@
+import { ThreeEvent } from "@react-three/fiber";
 import { useFBX } from "@Three";
 
 const FBX: React.FC<FBXType> = ({ src, size }) => {
@@ -15,4 +16,5 @@ export default FBX;
 export type FBXType = {
   src: string;
   size?: number;
+  handleClickEvent?: (event: ThreeEvent<MouseEvent>) => void;
 };

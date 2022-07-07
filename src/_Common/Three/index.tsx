@@ -5,6 +5,6 @@ export { Canvas, useFrame } from "@react-three/fiber";
 export { ShapeType, threeToCannon } from "three-to-cannon";
 
 export type { Event } from "three";
-export type { PublicApi } from "@react-three/cannon";
-export type { Triplet } from "@react-three/cannon";
+export type { ThreeEvent } from "@react-three/fiber";
+export type { Triplet, PublicApi } from "@react-three/cannon";
 export type { ShapeOptions } from "three-to-cannon";
