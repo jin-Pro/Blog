@@ -1,3 +1,4 @@
+import { MOVIES_INFO } from "@Common/Cache";
 import { IdType, MovieDataType } from "@Common/Type/Data";
 import { useCallback, useEffect, useState } from "react";
 
@@ -10,7 +11,7 @@ export const useGetMoviesData: Props = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleTitleId: handleTitleIdFnType = useCallback(
-    (id: number | string) => setTitleId(id),
+    (id: IdType) => setTitleId(id),
     []
   );
 
@@ -41,8 +42,15 @@ type handleMoviesProps = (
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => void;
 
-const handleMovies: handleMoviesProps = async (id, setMovies, setLoading) => {
-  const movies = await postMovies(id);
+const handleMovies: handleMoviesProps = async (
+  titleId,
+  setMovies,
+  setLoading
+) => {
+  const movies = MOVIES_INFO[titleId]
+    ? MOVIES_INFO[titleId]
+    : await postMovies(titleId);
+  MOVIES_INFO[titleId] = movies;
   setMovies(movies);
   setLoading(true);
 };

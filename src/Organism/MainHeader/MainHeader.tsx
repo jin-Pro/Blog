@@ -1,4 +1,5 @@
 import { Flex } from "@Atom/.";
+import { Outlet } from "react-router-dom";
 import { useLocationHook } from "./MainHeader.hook";
 import { LogoImg, MainHeaderContainer } from "./MainHeader.style";
 

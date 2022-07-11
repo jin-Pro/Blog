@@ -5,9 +5,9 @@ import { useCallback } from "react";
 import { useGetNavDatas } from "./MainNavBar.hook";
 import { MainNavBarContainer } from "./MainNavBar.style";
 
-type Props = { handleTitleId: handleTitleIdFnType; id: IdType };
+type Props = { handleTitleId: handleTitleIdFnType; titleId: IdType };
 
-export const MainNavBar: React.FC<Props> = ({ handleTitleId, id }) => {
+export const MainNavBar: React.FC<Props> = ({ handleTitleId, titleId }) => {
   const datas = useGetNavDatas();
 
   const handleNavItemClick = useCallback(navClickFnHelper(handleTitleId), [
@@ -17,7 +17,7 @@ export const MainNavBar: React.FC<Props> = ({ handleTitleId, id }) => {
   return (
     <MainNavBarContainer onClick={handleNavItemClick}>
       {datas.map((data: BlogNavDataType) => (
-        <NavItem {...data} key={data.id} bool={id == data.id} />
+        <NavItem {...data} key={data.id} bool={titleId == data.id} />
       ))}
     </MainNavBarContainer>
   );
