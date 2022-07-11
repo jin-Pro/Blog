@@ -5,8 +5,6 @@ type ContainerProps = { bool: boolean };
 type Props = BlogNavDataType & ContainerProps;
 
 export const NavItem: React.FC<Props> = ({ id, title, bool }) => {
-  console.log("bool : ", bool);
-  console.log("id : ", id);
   return (
     <NavItemContainer data-id={id} bool={bool}>
       {title}

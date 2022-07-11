@@ -8,4 +8,5 @@ export type BlogNavDataType = {
 export type MovieDataType = {
   movieId: IdType;
   movieTitle: string;
+  movieSrc: string;
 };
