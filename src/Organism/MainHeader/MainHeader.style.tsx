@@ -6,13 +6,12 @@ export const MainHeaderContainer = styled.header`
   align-items: center;
   width: 80%;
   margin: auto;
-  margin-top: 30px;
-  padding-bottom: 10px;
+  padding: 10px;
   box-sizing: border-box;
 `;
 export const LogoImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   margin: 10px;
 `;
