@@ -1,13 +1,12 @@
 import { Flex } from "@Atom/.";
-import { Outlet } from "react-router-dom";
 import { useLocationHook } from "./MainHeader.hook";
-import { LogoImg, MainHeaderContainer } from "./MainHeader.style";
+import { HomeIcon, LogoImg, MainHeaderContainer } from "./MainHeader.style";
 
 export const MainHeader: React.FC = () => {
   const { goHome, goMail, goVelog, goGit, goNotion } = useLocationHook();
   return (
     <MainHeaderContainer>
-      <LogoImg src="./Asset/home.svg" alt="home" onClick={goHome} />
+      <HomeIcon src="./Asset/home.svg" alt="home" onClick={goHome} />
 
       <Flex justify="end">
         <LogoImg src="./Asset/mail.svg" alt="mail" onClick={goMail} />

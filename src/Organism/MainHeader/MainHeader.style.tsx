@@ -15,3 +15,8 @@ export const LogoImg = styled.img`
   cursor: pointer;
   margin: 10px;
 `;
+
+export const HomeIcon = styled(LogoImg)`
+  width: 40px;
+  height: 40px;
+`;

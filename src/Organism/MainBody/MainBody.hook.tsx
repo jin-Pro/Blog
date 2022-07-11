@@ -27,10 +27,11 @@ const postMovies: postMoviesProps = async (id) => {
   //   const res = await axios.post("http://localhost:3000", { id });
   try {
     const res = await new Promise((resolve, reject) => {
-      setTimeout(() => resolve(mockMoviesData[id]), 1000);
+      setTimeout(() => resolve(mockMoviesData[id] ?? []), 100);
     });
     return res as MovieDataType[];
   } catch (e) {
+    console.log(e);
     return [];
   }
 };
@@ -172,21 +173,21 @@ const mockMoviesData: mockMoviesDataProp = {
       movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
     },
   ],
-  "6": [
-    {
-      movieId: 1,
-      movieTitle: "web",
-      movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
-    },
-    {
-      movieId: 2,
-      movieTitle: "test2",
-      movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
-    },
-    {
-      movieId: 3,
-      movieTitle: "test3",
-      movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
-    },
-  ],
+  // "6": [
+  //   {
+  //     movieId: 1,
+  //     movieTitle: "web",
+  //     movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
+  //   },
+  //   {
+  //     movieId: 2,
+  //     movieTitle: "test2",
+  //     movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
+  //   },
+  //   {
+  //     movieId: 3,
+  //     movieTitle: "test3",
+  //     movieSrc: "https://www.youtube.com/embed/RVO02Z1dLF8",
+  //   },
+  // ],
 };

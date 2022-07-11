@@ -9,7 +9,6 @@ type Props = { handleTitleId: handleTitleIdFnType; titleId: IdType };
 
 export const MainNavBar: React.FC<Props> = ({ handleTitleId, titleId }) => {
   const datas = useGetNavDatas();
-
   const handleNavItemClick = useCallback(navClickFnHelper(handleTitleId), [
     handleTitleId,
   ]);

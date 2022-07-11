@@ -17,8 +17,9 @@ const NavItemContainer = styled.div<ContainerProps>`
   font-size: 20px;
   padding: calc(calc(calc(100vh - 275px) / 6 - 20px) / 2);
   box-sizing: border-box;
-  background-color: ${({ bool }) => bool && "#b8b4b4"};
+  background-color: ${({ bool }) => bool && "#e9e3e3"};
+  border-radius: 30px;
   :hover {
-    background-color: #b8b4b4;
+    background-color: #e9e3e3;
   }
 `;

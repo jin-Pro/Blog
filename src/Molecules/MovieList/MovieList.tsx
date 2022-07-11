@@ -2,7 +2,11 @@ import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage/.";
 import { IdType, MovieDataType } from "@Common/Type/Data";
 import { useCallback } from "react";
-import { MoviesContainer, VideoSideBarContainer } from "./MovieList.style";
+import {
+  EmptyMovieListContainer,
+  MoviesContainer,
+  VideoSideBarContainer,
+} from "./MovieList.style";
 
 type Props = {
   movies: MovieDataType[];
@@ -22,8 +26,11 @@ export const MovieList: React.FC<Props> = ({
     videoClickHelper(handleMovePageFn, titleId),
     [handleMovePageFn, titleId]
   );
-  if (!loading) return <div>...loading</div>;
-  if (movies.length === 0) return <div> 준비중입니다.</div>;
+
+  if (!loading)
+    return <EmptyMovieListContainer> 로딩중 ...</EmptyMovieListContainer>;
+  if (movies.length === 0)
+    return <EmptyMovieListContainer> ~ 텅 </EmptyMovieListContainer>;
 
   const ContainerComponent =
     type === "medium" ? MoviesContainer : VideoSideBarContainer;
