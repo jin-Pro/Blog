@@ -1,12 +1,14 @@
+import { NavItem } from "@Atom/NavItem/NavItem";
+import { BlogNavDataType } from "@Common/Type/Data";
+import { useGetNavDatas } from "./MainNavBar.hook";
+
 export const MainNavBar: React.FC = () => {
+  const datas = useGetNavDatas();
   return (
     <nav>
-      <div>HTML & CSS</div>
-      <div>JavaScript</div>
-      <div>React</div>
-      <div>Network</div>
-      <div>OS</div>
-      <div>Web</div>
+      {datas.map((data: BlogNavDataType) => (
+        <NavItem {...data} key={data.id} />
+      ))}
     </nav>
   );
 };
