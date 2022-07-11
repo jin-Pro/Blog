@@ -1,9 +1,8 @@
-import { MainBody, MainHeader, MainTitle } from "@Organism/.";
+import { MainBody, MainTitle } from "@Organism/.";
 
 export const MainPage: React.FC = () => {
   return (
     <>
-      <MainHeader />
       <MainTitle />
       <MainBody />
     </>
