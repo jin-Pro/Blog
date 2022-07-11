@@ -1,9 +1,12 @@
 import { BlockFbx } from "@Atom/.";
 import FBX from "@Atom/FBX/FBX";
-import { useNavigatorBlog } from "./StaticModel.hook";
+import { useCallback } from "react";
 
-export const StaticModel: React.FC = () => {
-  const handleGoBlog = useNavigatorBlog();
+type Props = {
+  handleMovePageFn: (src: string) => void;
+};
+export const StaticModel: React.FC<Props> = ({ handleMovePageFn }) => {
+  const handleGoBlog = useCallback(() => handleMovePageFn("/main"), []);
   return (
     <>
       <FBX src="./3D/aircon.fbx" />

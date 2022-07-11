@@ -1,9 +1,9 @@
+import { useMovePageHook } from "@Common/Hook/useMovePage";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const useLocationHook = () => {
-  const navigator = useNavigate();
-  const goHome = useCallback(() => navigator("/"), []);
+  const handleMovePage = useMovePageHook();
+  const goHome = useCallback(() => handleMovePage("/"), []);
   const goMail = useCallback(() => window.open("mailto:dnjun2@ajou.ac.kr"), []);
   const goVelog = useCallback(() => window.open("https://velog.io/@0_jin"), []);
   const goGit = useCallback(
