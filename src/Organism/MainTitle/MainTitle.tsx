@@ -2,7 +2,7 @@ import { Flex } from "@Atom/.";
 import styled from "styled-components";
 
 export const MainTitle: React.FC = () => {
-  return <MainTitleContainer height="300px">jin-Pro</MainTitleContainer>;
+  return <MainTitleContainer height="200px">jin-Pro</MainTitleContainer>;
 };
 
 const MainTitleContainer = styled(Flex)`
@@ -27,5 +27,5 @@ const MainTitleContainer = styled(Flex)`
     }
   }
   color: #ffffff;
-  font-size: 32px;
+  font-size: 64px;
 `;
