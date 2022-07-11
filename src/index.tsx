@@ -9,12 +9,12 @@ import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root") as HTMLElement;
 
 ReactDOM.createRoot(container).render(
-  <React.StrictMode>
-    <Router>
-      <GlobalStyle />
-      <App />
-    </Router>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Router>
+    <GlobalStyle />
+    <App />
+  </Router>
+  // </React.StrictMode>
 );
 
 reportWebVitals();

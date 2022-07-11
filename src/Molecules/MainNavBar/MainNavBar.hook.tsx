@@ -1,6 +1,6 @@
 import { BlogNavDataType } from "@Common/Type/Data";
 
-export const useGetNavDatas: () => BlogNavDataType[] = () => {
+export const useGetNavDatas: Props = () => {
   return data;
 };
 
@@ -12,3 +12,5 @@ const data: BlogNavDataType[] = [
   { id: 5, title: "OS" },
   { id: 6, title: "Web" },
 ];
+
+type Props = () => BlogNavDataType[];
