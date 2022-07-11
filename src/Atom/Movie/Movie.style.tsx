@@ -16,6 +16,7 @@ const SmallStyle = css`
   width: 100%;
   height: 100px;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 export const MovieContainer = styled.li<StyleProps>`
