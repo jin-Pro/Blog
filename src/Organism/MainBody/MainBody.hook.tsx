@@ -2,7 +2,7 @@ import { IdType, MovieDataType } from "@Common/Type/Data";
 import { useCallback, useEffect, useState } from "react";
 
 export type handleTitleIdFnType = (id: IdType) => void;
-type Props = () => [MovieDataType[], handleTitleIdFnType, boolean];
+type Props = () => [IdType, MovieDataType[], handleTitleIdFnType, boolean];
 
 export const useGetMoviesData: Props = () => {
   const [titleId, setTitleId] = useState<IdType>(1);
@@ -18,7 +18,7 @@ export const useGetMoviesData: Props = () => {
     handleMovies(titleId, setMovies, setLoading);
   }, [titleId]);
 
-  return [movies, handleTitleId, loading];
+  return [titleId, movies, handleTitleId, loading];
 };
 
 type postMoviesProps = (id: IdType) => Promise<MovieDataType[]>;
