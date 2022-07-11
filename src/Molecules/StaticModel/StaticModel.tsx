@@ -24,8 +24,8 @@ export const StaticModel: React.FC<Props> = ({ handleMovePageFn }) => {
       <FBX src="./3D/desk.fbx" />
       <FBX src="./3D/clock.fbx" />
 
-      <FBX src="./3D/floor.fbx" size={[0.1, 0.1, 0.1]} />
-      <FBX src="./3D/wall.fbx" />
+      {/* <FBX src="./3D/floor.fbx" size={[0.1, 0.1, 0.1]} />
+      <FBX src="./3D/wall.fbx" /> */}
     </>
   );
 };

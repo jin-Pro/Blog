@@ -3,28 +3,12 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-  font-family: 'NanumBarunGothic';
-  font-style: normal;
-  font-weight: 400;
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
-  }
-  
-  @font-face {
-  font-family: 'NanumBarunGothic';
-  font-style: normal;
-  font-weight: 700;
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
-  }
-  
-  @font-face {
-  font-family: 'NanumBarunGothic';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
-  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
-  }
+    font-family: 'BMDOHYEON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
   ${reset}
   * {
     margin: 0;
@@ -34,14 +18,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     text-decoration: none;
     color: #000000;
-    font-family: 'NanumBarunGothic';
+    font-family: 'BMDOHYEON';
   }
   *::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
   body{
     overflow-x:hidden;
-    font-family: 'NanumBarunGothic';
+    font-family: 'BMDOHYEON';
   }
   ol, ul,li {
 	list-style: none;
