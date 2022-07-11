@@ -2,11 +2,21 @@ import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage/.";
 import { IdType, MovieDataType } from "@Common/Type/Data";
 import { useCallback } from "react";
-import { MoviesContainer } from "./Movies.style";
+import { MoviesContainer, VideoSideBarContainer } from "./MovieList.style";
 
-type Props = { movies: MovieDataType[]; loading: boolean; titleId: IdType };
+type Props = {
+  movies: MovieDataType[];
+  loading: boolean;
+  titleId: IdType;
+  type: "small" | "medium";
+};
 
-export const Movies: React.FC<Props> = ({ titleId, movies, loading }) => {
+export const MovieList: React.FC<Props> = ({
+  titleId,
+  movies,
+  loading,
+  type,
+}) => {
   const handleMovePageFn = useMovePageHook();
   const handleGoVideoPage = useCallback(
     videoClickHelper(handleMovePageFn, titleId),
@@ -15,12 +25,15 @@ export const Movies: React.FC<Props> = ({ titleId, movies, loading }) => {
   if (!loading) return <div>...loading</div>;
   if (movies.length === 0) return <div> 준비중입니다.</div>;
 
+  const ContainerComponent =
+    type === "medium" ? MoviesContainer : VideoSideBarContainer;
+
   return (
-    <MoviesContainer onClick={handleGoVideoPage}>
+    <ContainerComponent onClick={handleGoVideoPage}>
       {movies.map((movie) => (
-        <Movie key={movie.movieId} {...movie} />
+        <Movie key={movie.movieId} {...movie} type={type} />
       ))}
-    </MoviesContainer>
+    </ContainerComponent>
   );
 };
 

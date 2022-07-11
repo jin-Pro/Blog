@@ -1,15 +1,19 @@
 import { Flex } from "@Atom/.";
-import { MainVideo } from "@Molecules/.";
-import { VideoSideBar } from "@Organism/.";
+import { MainVideo, MovieList } from "@Molecules/.";
 import styled from "styled-components";
 import { useGetVideoData } from "./VideoPage.hook";
 
 export const VideoPage: React.FC = () => {
-  const [movies, movie] = useGetVideoData();
+  const [titleId, movies, movie] = useGetVideoData();
   return (
     <VideoPageContainer>
       <MainVideo movie={movie} />
-      <VideoSideBar movies={movies} />
+      <MovieList
+        titleId={titleId}
+        movies={movies}
+        loading={true}
+        type="small"
+      />
     </VideoPageContainer>
   );
 };

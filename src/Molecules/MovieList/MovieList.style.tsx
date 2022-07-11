@@ -11,3 +11,9 @@ export const MoviesContainer = styled.ul`
   height: 100%;
   overflow: auto;
 `;
+
+export const VideoSideBarContainer = styled.ul`
+  height: 100%;
+  padding-bottom: 5%;
+  overflow: auto;
+`;

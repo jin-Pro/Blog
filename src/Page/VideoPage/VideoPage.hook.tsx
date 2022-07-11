@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export type MainVideoType = MovieDataType | undefined;
-type Props = () => [MovieDataType[], MainVideoType];
+type Props = () => [IdType, MovieDataType[], MainVideoType];
 
 export const useGetVideoData: Props = () => {
   const [movies, setMovies] = useState<MovieDataType[]>([]);
@@ -22,7 +22,7 @@ export const useGetVideoData: Props = () => {
     );
   }, [titleId, helperFn]);
 
-  return [movies, movie];
+  return [titleId, movies, movie];
 };
 
 type helperFnType = (
