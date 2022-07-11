@@ -2,11 +2,12 @@ import { IdType, MovieDataType } from "@Common/Type/Data";
 import { useCallback, useEffect, useState } from "react";
 
 export type handleTitleIdFnType = (id: IdType) => void;
-type Props = () => [MovieDataType[], handleTitleIdFnType];
+type Props = () => [MovieDataType[], handleTitleIdFnType, boolean];
 
 export const useGetMoviesData: Props = () => {
   const [titleId, setTitleId] = useState<IdType>(1);
   const [movies, setMovies] = useState<MovieDataType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleTitleId: handleTitleIdFnType = useCallback(
     (id: number | string) => setTitleId(id),
@@ -14,10 +15,10 @@ export const useGetMoviesData: Props = () => {
   );
 
   useEffect(() => {
-    handleMovies(titleId, setMovies);
+    handleMovies(titleId, setMovies, setLoading);
   }, [titleId]);
 
-  return [movies, handleTitleId];
+  return [movies, handleTitleId, loading];
 };
 
 type postMoviesProps = (id: IdType) => Promise<MovieDataType[]>;
@@ -36,12 +37,14 @@ const postMovies: postMoviesProps = async (id) => {
 
 type handleMoviesProps = (
   id: IdType,
-  setMovies: React.Dispatch<React.SetStateAction<MovieDataType[]>>
+  setMovies: React.Dispatch<React.SetStateAction<MovieDataType[]>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => void;
 
-const handleMovies: handleMoviesProps = async (id, setMovies) => {
+const handleMovies: handleMoviesProps = async (id, setMovies, setLoading) => {
   const movies = await postMovies(id);
   setMovies(movies);
+  setLoading(true);
 };
 
 type mockMoviesDataProp = {
