@@ -43,6 +43,9 @@ const GlobalStyle = createGlobalStyle`
     overflow-x:hidden;
     font-family: 'NanumBarunGothic';
   }
+  ol, ul,li {
+	list-style: none;
+}
 `;
 
 export default GlobalStyle;

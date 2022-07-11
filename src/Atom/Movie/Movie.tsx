@@ -1,15 +1,21 @@
 import { MovieDataType } from "@Common/Type/Data";
-import { MovieContainer, MovieVideo } from "./Movie.style";
+import { MovieContainer, MovieVideo, StyleProps } from "./Movie.style";
 
-export const Movie: React.FC<MovieDataType> = ({
+type Props = MovieDataType & StyleProps;
+export const Movie: React.FC<Props> = ({
   movieId,
   movieTitle,
   movieSrc,
+  type,
 }) => {
   return (
-    <MovieContainer data-id={movieId}>
-      <MovieVideo src={movieSrc} />
+    <MovieContainer data-id={movieId} type={type}>
+      <MovieVideo src={movieSrc} type={type} />
       {movieTitle}
     </MovieContainer>
   );
+};
+
+Movie.defaultProps = {
+  type: "medium",
 };

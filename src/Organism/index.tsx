@@ -3,3 +3,4 @@ export * from "./ThreeGuide/ThreeGuide";
 export * from "./MainHeader/MainHeader";
 export * from "./MainTitle/MainTitle";
 export * from "./MainBody/MainBody";
+export * from "./VideoSideBar/VideoSideBar";

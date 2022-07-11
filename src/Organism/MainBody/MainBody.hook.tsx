@@ -16,14 +16,13 @@ export const useGetMoviesData: Props = () => {
   );
 
   useEffect(() => {
-    handleMovies(titleId, setMovies, setLoading);
+    handleMovies(titleId, setMovies, () => setLoading(true));
   }, [titleId]);
 
   return [titleId, movies, handleTitleId, loading];
 };
 
 type postMoviesProps = (id: IdType) => Promise<MovieDataType[]>;
-
 const postMovies: postMoviesProps = async (id) => {
   //   const res = await axios.post("http://localhost:3000", { id });
   try {
@@ -37,22 +36,21 @@ const postMovies: postMoviesProps = async (id) => {
 };
 
 type handleMoviesProps = (
-  id: IdType,
+  titleId: IdType,
   setMovies: React.Dispatch<React.SetStateAction<MovieDataType[]>>,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  fn?: Function
 ) => void;
-
-const handleMovies: handleMoviesProps = async (
+export const handleMovies: handleMoviesProps = async (
   titleId,
   setMovies,
-  setLoading
+  fn
 ) => {
   const movies = MOVIES_INFO[titleId]
     ? MOVIES_INFO[titleId]
     : await postMovies(titleId);
   MOVIES_INFO[titleId] = movies;
   setMovies(movies);
-  setLoading(true);
+  if (fn instanceof Function) fn();
 };
 
 type mockMoviesDataProp = {
