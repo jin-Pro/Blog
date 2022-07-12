@@ -26,7 +26,6 @@ export const MovieList: React.FC<Props> = ({
     videoClickHelper(handleMovePageFn, titleId),
     [handleMovePageFn, titleId]
   );
-
   if (!loading)
     return <EmptyMovieListContainer> 로딩중 ...</EmptyMovieListContainer>;
   if (movies.length === 0)

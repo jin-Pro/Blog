@@ -10,22 +10,25 @@ export const StaticModel: React.FC<Props> = ({ handleMovePageFn }) => {
   return (
     <>
       <FBX src="./3D/aircon.fbx" />
-      <FBX src="./3D/bed_1.fbx" />
-      <FBX src="./3D/bed_2.fbx" />
-      <FBX src="./3D/bed_3.fbx" />
-      <FBX src="./3D/bed_4.fbx" />
       <FBX src="./3D/board.fbx" />
-      <FBX src="./3D/chair.fbx" />
       <FBX src="./3D/wifi.fbx" />
       <FBX src="./3D/mouse.fbx" />
-      <FBX src="./3D/monitor_1.fbx" handleClickEvent={handleGoBlog} />
-      <FBX src="./3D/monitor_2.fbx" />
-      <FBX src="./3D/deskpad.fbx" />
-      <FBX src="./3D/desk.fbx" />
-      <FBX src="./3D/clock.fbx" />
 
-      {/* <FBX src="./3D/floor.fbx" size={[0.1, 0.1, 0.1]} />
-      <FBX src="./3D/wall.fbx" /> */}
+      <FBX src="./3D/floor.fbx" />
+
+      <FBX src="./3D/colock.fbx" />
+      <FBX src="./3D/holder_1.fbx" />
+      <FBX src="./3D/holder_2.fbx" />
+      <FBX src="./3D/ipad.fbx" />
+      <FBX src="./3D/iphone.fbx" />
+      <FBX src="./3D/macbook.fbx" />
+      <FBX src="./3D/monitor.fbx" handleClickEvent={handleGoBlog} />
+      <FBX src="./3D/poster_1.fbx" />
+      <FBX src="./3D/poster_2.fbx" />
+
+      <BlockFbx src="./3D/bed.fbx" />
+      <BlockFbx src="./3D/chair.fbx" />
+      <BlockFbx src="./3D/desk.fbx" />
     </>
   );
 };
