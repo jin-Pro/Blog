@@ -1,18 +1,20 @@
 import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage";
-import { MainVideoType } from "@Page/VideoPage/VideoPage.hook";
+import { MovieDataType } from "@Common/Type/Data";
+import { wrapPromiseReturnType } from "@Common/Util";
 import styled from "styled-components";
 
-type Props = { movie: MainVideoType };
-export const MainVideo: React.FC<Props> = ({ movie }) => {
+type Props = { getMovieFunc: wrapPromiseReturnType<MovieDataType[]> };
+export const MainVideo: React.FC<Props> = ({ getMovieFunc }) => {
+  const movies = getMovieFunc.get() as MovieDataType[];
   const handleMovePageFn = useMovePageHook();
-  if (!movie) {
+  if (movies?.length === 0) {
     handleMovePageFn("/main");
     return null;
   }
   return (
     <MainVideoContainer>
-      <Movie {...movie} type="large" />
+      <Movie {...movies[0]} type="large" />
     </MainVideoContainer>
   );
 };

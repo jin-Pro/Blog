@@ -1,37 +1,43 @@
-import { MOVIES_INFO } from "@Common/Cache";
 import { IdType, MovieDataType } from "@Common/Type/Data";
-import { handleMovies } from "@Organism/MainBody/MainBody.hook";
+import { wrapPromiseReturnType } from "@Common/Util";
+import {
+  cachingMovieData,
+  getMovieDataFunc,
+} from "@Organism/MainBody/MainBody.hook";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export type MainVideoType = MovieDataType | undefined;
-type Props = () => [IdType, MovieDataType[], MainVideoType];
+type Props = () => [
+  IdType,
+  wrapPromiseReturnType<MovieDataType[]>,
+  wrapPromiseReturnType<MovieDataType[]>
+];
 
 export const useGetVideoData: Props = () => {
-  const [movies, setMovies] = useState<MovieDataType[]>([]);
-  const [movie, setMovie] = useState<MovieDataType>();
-
   const { search } = useLocation();
   const { id, titleId } = useMemo(() => getUrlData(search), [search]);
-
   const helperFn = useCallback(getMovieHelperFn(id), [id]);
 
+  const [getMovieFunc, setMovieFunc] = useState(
+    getMovieDataFunc(titleId, helperFn)
+  );
+  const [getMoviesFunc, setMoviesFunc] = useState(
+    getMovieDataFunc(titleId, cachingMovieData(titleId))
+  );
+
   useEffect(() => {
-    handleMovies(titleId, setMovies, () =>
-      setMovie(MOVIES_INFO[titleId].filter(helperFn)[0])
-    );
+    setMoviesFunc(getMovieDataFunc(titleId));
+    setMovieFunc(getMovieDataFunc(titleId, helperFn));
   }, [titleId, helperFn]);
 
-  return [titleId, movies, movie];
+  return [titleId, getMovieFunc, getMoviesFunc];
 };
 
 type helperFnType = (
   id: IdType
-) => ({ movieId }: { movieId: IdType }) => boolean;
-const getMovieHelperFn: helperFnType =
-  (id) =>
-  ({ movieId }) =>
-    movieId == id;
+) => (movies: MovieDataType[]) => MovieDataType[];
+const getMovieHelperFn: helperFnType = (id) => (movies) =>
+  movies.filter(({ movieId }) => movieId == id);
 
 type getUrlFnType = (search: string) => {
   id: IdType;
