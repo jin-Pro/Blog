@@ -1,14 +1,20 @@
 import { MOVIES_INFO } from "@Common/Cache";
 import { IdType, MovieDataType } from "@Common/Type/Data";
+import { wrapPromise, wrapPromiseReturnType } from "@Common/Util";
 import { useCallback, useEffect, useState } from "react";
 
 export type handleTitleIdFnType = (id: IdType) => void;
-type Props = () => [IdType, MovieDataType[], handleTitleIdFnType, boolean];
+type Props = () => [
+  IdType,
+  wrapPromiseReturnType<MovieDataType[]>,
+  handleTitleIdFnType
+];
 
 export const useGetMoviesData: Props = () => {
   const [titleId, setTitleId] = useState<IdType>(1);
-  const [movies, setMovies] = useState<MovieDataType[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [getMoviesFunc, setMoviesFunc] = useState(
+    getMovieDataFunc(titleId, cachingMovieData(titleId))
+  );
 
   const handleTitleId: handleTitleIdFnType = useCallback(
     (id: IdType) => setTitleId(id),
@@ -16,43 +22,28 @@ export const useGetMoviesData: Props = () => {
   );
 
   useEffect(() => {
-    handleMovies(titleId, setMovies, () => setLoading(true));
+    setMoviesFunc(getMovieDataFunc(titleId, cachingMovieData(titleId)));
   }, [titleId]);
 
-  return [titleId, movies, handleTitleId, loading];
+  return [titleId, getMoviesFunc, handleTitleId];
 };
+
+export const cachingMovieData =
+  (titleId: IdType) => (movies: MovieDataType[]) => {
+    MOVIES_INFO[titleId] = (movies as MovieDataType[]) ?? [];
+    return movies ?? [];
+  };
+
+export const getMovieDataFunc = (titleId: IdType, cb?: Function) =>
+  wrapPromise(postMovies(titleId), cb);
 
 type postMoviesProps = (id: IdType) => Promise<MovieDataType[]>;
-const postMovies: postMoviesProps = async (id) => {
-  //   const res = await axios.post("http://localhost:3000", { id });
-  try {
-    const res = await new Promise((resolve, reject) => {
-      setTimeout(() => resolve(mockMoviesData[id] ?? []), 100);
-    });
-    return res as MovieDataType[];
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-};
-
-type handleMoviesProps = (
-  titleId: IdType,
-  setMovies: React.Dispatch<React.SetStateAction<MovieDataType[]>>,
-  fn?: Function
-) => void;
-export const handleMovies: handleMoviesProps = async (
-  titleId,
-  setMovies,
-  fn
-) => {
-  const movies = MOVIES_INFO[titleId]
-    ? MOVIES_INFO[titleId]
-    : await postMovies(titleId);
-  MOVIES_INFO[titleId] = movies;
-  setMovies(movies);
-  if (fn instanceof Function) fn();
-};
+const postMovies: postMoviesProps = async (id) =>
+  MOVIES_INFO[id]
+    ? Promise.resolve(MOVIES_INFO[id])
+    : new Promise((resolve, reject) => {
+        setTimeout(() => resolve(mockMoviesData[id]), 1000);
+      });
 
 type mockMoviesDataProp = {
   [key: IdType]: MovieDataType[];

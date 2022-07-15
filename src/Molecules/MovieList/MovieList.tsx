@@ -1,6 +1,7 @@
 import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage/.";
 import { IdType, MovieDataType } from "@Common/Type/Data";
+import { wrapPromiseReturnType } from "@Common/Util";
 import { useCallback } from "react";
 import {
   EmptyMovieListContainer,
@@ -9,26 +10,24 @@ import {
 } from "./MovieList.style";
 
 type Props = {
-  movies: MovieDataType[];
-  loading: boolean;
   titleId: IdType;
+  getMoviesFunc: wrapPromiseReturnType<MovieDataType[]>;
   type: "small" | "medium";
 };
 
 export const MovieList: React.FC<Props> = ({
   titleId,
-  movies,
-  loading,
+  getMoviesFunc,
   type,
 }) => {
+  const movies = getMoviesFunc.get();
+
   const handleMovePageFn = useMovePageHook();
   const handleGoVideoPage = useCallback(
     videoClickHelper(handleMovePageFn, titleId),
     [handleMovePageFn, titleId]
   );
-  if (!loading)
-    return <EmptyMovieListContainer> 로딩중 ...</EmptyMovieListContainer>;
-  if (movies.length === 0)
+  if (movies?.length === 0)
     return <EmptyMovieListContainer> ~ 텅 </EmptyMovieListContainer>;
 
   const ContainerComponent =
@@ -36,7 +35,7 @@ export const MovieList: React.FC<Props> = ({
 
   return (
     <ContainerComponent onClick={handleGoVideoPage}>
-      {movies.map((movie) => (
+      {movies?.map((movie: any) => (
         <Movie key={movie.movieId} {...movie} type={type} />
       ))}
     </ContainerComponent>
