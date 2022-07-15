@@ -1,11 +1,15 @@
-type wrapPromiseType<T> = (promise: Promise<T>) => any;
-export const wrapPromise: wrapPromiseType<any> = (promise) => {
+export type wrapPromiseReturnType<T> = { get: () => T | undefined };
+
+export function wrapPromise<T>(
+  promise: Promise<T>,
+  cb?: Function
+): wrapPromiseReturnType<T> {
   let status = "pending";
-  let result: any;
+  let result: T;
   let suspender = promise.then(
     (r) => {
       status = "success";
-      result = r;
+      result = cb ? cb(r) : r;
     },
     (e) => {
       status = "error";
@@ -13,7 +17,7 @@ export const wrapPromise: wrapPromiseType<any> = (promise) => {
     }
   );
   return {
-    read() {
+    get() {
       if (status === "pending") {
         throw suspender;
       } else if (status === "error") {
@@ -23,4 +27,4 @@ export const wrapPromise: wrapPromiseType<any> = (promise) => {
       }
     },
   };
-};
+}
