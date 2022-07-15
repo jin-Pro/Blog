@@ -1,5 +1,4 @@
-import { BlockFbx } from "@Atom/.";
-import FBX from "@Atom/FBX/FBX";
+import { BlockFbx, FBX } from "@Atom/.";
 import { useCallback } from "react";
 
 type Props = {

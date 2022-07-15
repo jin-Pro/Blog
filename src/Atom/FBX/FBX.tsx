@@ -1,7 +1,7 @@
 import { ThreeEvent } from "@react-three/fiber";
 import { useFBX, Vector3 } from "@Three";
 
-const FBX: React.FC<FBXType> = ({ src, size, handleClickEvent }) => {
+export const FBX: React.FC<FBXType> = ({ src, size, handleClickEvent }) => {
   const temp = useFBX(src);
 
   return (
@@ -13,8 +13,6 @@ const FBX: React.FC<FBXType> = ({ src, size, handleClickEvent }) => {
     </group>
   );
 };
-
-export default FBX;
 
 export type FBXType = {
   src: string;
