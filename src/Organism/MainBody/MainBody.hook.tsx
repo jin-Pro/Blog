@@ -30,8 +30,7 @@ export const useGetMoviesData: Props = () => {
 
 export const cachingMovieData =
   (titleId: IdType) => (movies: MovieDataType[]) => {
-    MOVIES_INFO[titleId] = (movies as MovieDataType[]) ?? [];
-    return movies ?? [];
+    return (MOVIES_INFO[titleId] = (movies as MovieDataType[]) ?? []);
   };
 
 export const getMovieDataFunc = (titleId: IdType, cb?: Function) =>
