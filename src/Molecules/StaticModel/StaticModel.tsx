@@ -1,4 +1,4 @@
-import { BlockFbx, FBX } from "@Atom/.";
+import { FBX } from "@Atom/.";
 import { useCallback } from "react";
 import { MODEL_SRC } from "./StaticModel.constant";
 

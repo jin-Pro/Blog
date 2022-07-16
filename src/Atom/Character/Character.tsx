@@ -8,14 +8,14 @@ export const Character: React.FC = () => {
   const [ref, api] = useSphere(() => ({
     mass: 100,
     args: [0.01],
-    position: [0, -1, 0],
+    position: [0, -2, 0],
     type: "Dynamic",
   }));
 
   useCharacterMove(api, useCharacterAnimation(ref));
 
   return (
-    <group ref={ref as any} scale={0.01}>
+    <group ref={ref as any} scale={0.02}>
       <primitive object={temp} />
     </group>
   );
