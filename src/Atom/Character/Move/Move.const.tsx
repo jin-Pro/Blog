@@ -1,4 +1,4 @@
-export const SPEED = -3;
+export const SPEED = -2;
 
 export const DefaultKeyboardState: keyBoardStateType = {
   backward: false,

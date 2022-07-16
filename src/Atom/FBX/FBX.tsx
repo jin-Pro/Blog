@@ -6,8 +6,9 @@ export const FBX: React.FC<FBXType> = ({ src, size, handleClickEvent }) => {
 
   return (
     <group
-      scale={new Vector3(...(size ?? [1, 1, 1]))}
+      scale={new Vector3(...(size ?? [0.5, 0.5, 0.5]))}
       onClick={handleClickEvent}
+      position={new Vector3(...[0, -0.5, 0.5])}
     >
       <primitive object={temp} />
     </group>
