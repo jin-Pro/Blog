@@ -8,7 +8,7 @@ export const Character: React.FC = () => {
   const [ref, api] = useSphere(() => ({
     mass: 100,
     args: [0.01],
-    position: [0, -2, 0],
+    position: [0, -2, -2],
     type: "Dynamic",
   }));
 
