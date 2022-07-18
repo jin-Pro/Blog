@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { BasicPage } from "@Page/.";
-import { Blog } from "@Page/Blog";
+import { BasicPage, Blog } from "@Page/.";
 
 const App: React.FC = () => {
   return (
