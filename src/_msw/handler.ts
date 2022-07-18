@@ -17,7 +17,9 @@ export const mockMovies: Props = (req, res, ctx) => {
   const {
     params: { titleId },
   } = req;
-  return res(ctx.json(mockMoviesData[titleId as IdType]));
+  const data = mockMoviesData[titleId as IdType];
+  if (!data) res.networkError("error");
+  return res(ctx.json(data));
 };
 
 type mockMoviesDataProp = {

@@ -14,6 +14,10 @@ export const getMovieDataFunc = (titleId: IdType, cb?: Function) =>
 
 type getMoviesProps = (id: IdType) => Promise<MovieDataType[]>;
 const getMovies: getMoviesProps = async (id) =>
-  MOVIES_INFO[id]
-    ? Promise.resolve(MOVIES_INFO[id])
-    : axios.get(`/movies/${id}`).then((res) => res.data);
+  MOVIES_INFO[id] ? Promise.resolve(MOVIES_INFO[id]) : getFetchMovies(id);
+
+const getFetchMovies: getMoviesProps = (id) =>
+  axios
+    .get(`/movies/${id}`)
+    .then((res) => res.data)
+    .catch((err) => []);

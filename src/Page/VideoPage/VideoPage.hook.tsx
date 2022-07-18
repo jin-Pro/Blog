@@ -44,8 +44,12 @@ type getUrlFnType = (search: string) => {
   titleId: IdType;
 };
 const getUrlData: getUrlFnType = (search) => {
-  const [_, titleIdContainer, idContainer] = search.split("?");
-  const [__, titleId] = titleIdContainer.split("=");
-  const [___, id] = idContainer.split("=");
-  return { id, titleId };
+  try {
+    const [_, titleIdContainer, idContainer] = search.split("?");
+    const [__, titleId] = titleIdContainer.split("=");
+    const [___, id] = idContainer.split("=");
+    return { id, titleId };
+  } catch (e) {
+    return { id: 1, titleId: 1 };
+  }
 };
