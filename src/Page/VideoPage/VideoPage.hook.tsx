@@ -10,8 +10,8 @@ import { useLocation } from "react-router-dom";
 export const useGetVideoData: Props = () => {
   const { search } = useLocation();
   const { id, titleId } = getUrlData(search);
-  const helperFn = getMovieHelperFn(id);
-  const getMovieFunc = getMovieDataFunc(titleId, helperFn);
+  const movieFilterFunc = getMovieHelperFn(id);
+  const getMovieFunc = getMovieDataFunc(titleId, movieFilterFunc);
   const getMoviesFunc = useMemo(
     () => getMovieDataFunc(titleId, cachingMovieData(titleId)),
     [titleId]

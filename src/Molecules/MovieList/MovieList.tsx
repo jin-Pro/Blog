@@ -29,7 +29,7 @@ export const MovieList: React.FC<Props> = memo(function ({
 
   return (
     <ContainerComponent onClick={handleGoVideoPage}>
-      {movies?.map((movie: any) => (
+      {movies?.map((movie) => (
         <Movie key={movie.movieId} {...movie} type={type} />
       ))}
     </ContainerComponent>
