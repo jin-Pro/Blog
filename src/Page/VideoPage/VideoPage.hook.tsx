@@ -3,7 +3,7 @@ import { wrapPromiseReturnType } from "@Common/Util";
 import {
   cachingMovieData,
   getMovieDataFunc,
-} from "@Organism/MainBody/MainBody.hook";
+} from "@Organism/MainBody/MainBody.util";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
