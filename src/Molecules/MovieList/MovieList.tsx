@@ -1,36 +1,31 @@
+import { useCallback, useMemo, memo } from "react";
 import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage/.";
 import { IdType, MovieDataType } from "@Common/Type/Data";
 import { wrapPromiseReturnType } from "@Common/Util";
-import { useCallback } from "react";
 import {
   EmptyMovieListContainer,
   MoviesContainer,
   VideoSideBarContainer,
 } from "./MovieList.style";
 
-type Props = {
-  titleId: IdType;
-  getMoviesFunc: wrapPromiseReturnType<MovieDataType[]>;
-  type: "small" | "medium";
-};
-
-export const MovieList: React.FC<Props> = ({
+export const MovieList: React.FC<Props> = memo(function ({
   titleId,
   getMoviesFunc,
   type,
-}) => {
-  const movies = getMoviesFunc.get();
+}) {
+  const movies = useMemo(() => getMoviesFunc.get(), [getMoviesFunc]);
   const handleMovePageFn = useMovePageHook();
   const handleGoVideoPage = useCallback(
     videoClickHelper(handleMovePageFn, titleId),
     [handleMovePageFn, titleId]
   );
+  const ContainerComponent = useMemo(
+    () => (type === "medium" ? MoviesContainer : VideoSideBarContainer),
+    [type]
+  );
   if (movies?.length === 0)
     return <EmptyMovieListContainer> ~ 텅 </EmptyMovieListContainer>;
-
-  const ContainerComponent =
-    type === "medium" ? MoviesContainer : VideoSideBarContainer;
 
   return (
     <ContainerComponent onClick={handleGoVideoPage}>
@@ -39,6 +34,12 @@ export const MovieList: React.FC<Props> = ({
       ))}
     </ContainerComponent>
   );
+});
+
+type Props = {
+  titleId: IdType;
+  getMoviesFunc: wrapPromiseReturnType<MovieDataType[]>;
+  type: "small" | "medium";
 };
 
 const videoClickHelper =

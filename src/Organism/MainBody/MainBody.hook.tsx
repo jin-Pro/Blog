@@ -1,22 +1,18 @@
 import { IdType, MovieDataType } from "@Common/Type/Data";
 import { wrapPromiseReturnType } from "@Common/Util";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { getMovieDataFunc, cachingMovieData } from "./MainBody.util";
 
 export const useGetMoviesData: Props = () => {
   const [titleId, setTitleId] = useState<IdType>(1);
-  const [getMoviesFunc, setMoviesFunc] = useState(
-    getMovieDataFunc(titleId, cachingMovieData(titleId))
+  const getMoviesFunc = useMemo(
+    () => getMovieDataFunc(titleId, cachingMovieData(titleId)),
+    [titleId]
   );
-
   const handleTitleId: handleTitleIdFnType = useCallback(
     (id: IdType) => setTitleId(id),
     []
   );
-
-  useEffect(() => {
-    setMoviesFunc(getMovieDataFunc(titleId, cachingMovieData(titleId)));
-  }, [titleId]);
 
   return [titleId, getMoviesFunc, handleTitleId];
 };
