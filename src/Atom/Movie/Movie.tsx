@@ -9,7 +9,6 @@ export const Movie: React.FC<Props> = React.memo(function ({
   movieSrc,
   type,
 }) {
-  // console.log("?");
   return (
     <MovieContainer data-id={movieId} type={type}>
       <MovieVideo src={movieSrc} type={type} />

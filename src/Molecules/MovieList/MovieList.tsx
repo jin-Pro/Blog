@@ -1,20 +1,21 @@
 import { useCallback, useMemo, memo } from "react";
 import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage/.";
-import { IdType, MovieDataType } from "@Common/Type/Data";
-import { wrapPromiseReturnType } from "@Common/Util";
+import { IdType } from "@Common/Type/Data";
 import {
   EmptyMovieListContainer,
   MoviesContainer,
   VideoSideBarContainer,
 } from "./MovieList.style";
+import { useQuery } from "react-query";
+import { getFetchMovies } from "@Organism/MainBody/MainBody.util";
 
-export const MovieList: React.FC<Props> = memo(function ({
-  titleId,
-  getMoviesFunc,
-  type,
-}) {
-  const movies = useMemo(() => getMoviesFunc.get(), [getMoviesFunc]);
+export const MovieList: React.FC<Props> = memo(function ({ titleId, type }) {
+  const { data: movies } = useQuery(
+    ["MovieList", titleId],
+    () => getFetchMovies(titleId),
+    { refetchOnWindowFocus: false }
+  );
   const handleMovePageFn = useMovePageHook();
   const handleGoVideoPage = useCallback(
     videoClickHelper(handleMovePageFn, titleId),
@@ -38,7 +39,6 @@ export const MovieList: React.FC<Props> = memo(function ({
 
 type Props = {
   titleId: IdType;
-  getMoviesFunc: wrapPromiseReturnType<MovieDataType[]>;
   type: "small" | "medium";
 };
 

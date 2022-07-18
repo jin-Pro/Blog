@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { useGetMoviesData } from "./MainBody.hook";
 
 export const MainBody: React.FC = () => {
-  const [titleId, getMoviesFunc, handleTitleId] = useGetMoviesData();
+  const [titleId, handleTitleId] = useGetMoviesData();
   return (
     <Flex justify="flex-start" align="none" height="calc(100vh - 275px)">
       <MainNavBar handleTitleId={handleTitleId} titleId={titleId} />
@@ -14,11 +14,7 @@ export const MainBody: React.FC = () => {
           <EmptyMovieListContainer> 로딩중 ...</EmptyMovieListContainer>
         }
       >
-        <MovieList
-          titleId={titleId}
-          getMoviesFunc={getMoviesFunc}
-          type="medium"
-        />
+        <MovieList titleId={titleId} type="medium" />
       </Suspense>
     </Flex>
   );

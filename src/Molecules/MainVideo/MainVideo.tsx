@@ -1,20 +1,29 @@
 import { Movie } from "@Atom/.";
 import { useMovePageHook } from "@Common/Hook/useMovePage";
-import { MovieDataType } from "@Common/Type/Data";
-import { wrapPromiseReturnType } from "@Common/Util";
+import { IdType } from "@Common/Type/Data";
+import { getFetchMovies } from "@Organism/MainBody/MainBody.util";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
-type Props = { getMovieFunc: wrapPromiseReturnType<MovieDataType[]> };
-export const MainVideo: React.FC<Props> = ({ getMovieFunc }) => {
-  const movies = getMovieFunc.get() as MovieDataType[];
+type Props = { id: IdType; titleId: IdType };
+export const MainVideo: React.FC<Props> = ({ id, titleId }) => {
+  const { data: movies } = useQuery(
+    ["Movie", titleId],
+    () => getFetchMovies(titleId),
+    {
+      refetchOnWindowFocus: false,
+      suspense: true,
+    }
+  );
+  const movie = movies?.filter(({ movieId }) => movieId == id)[0];
   const handleMovePageFn = useMovePageHook();
-  if (movies?.length === 0) {
+  if (!movie) {
     handleMovePageFn("/main");
     return null;
   }
   return (
     <MainVideoContainer>
-      <Movie {...movies[0]} type="large" />
+      <Movie {...movie} type="large" />
     </MainVideoContainer>
   );
 };

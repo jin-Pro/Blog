@@ -1,36 +1,13 @@
-import { IdType, MovieDataType } from "@Common/Type/Data";
-import { wrapPromiseReturnType } from "@Common/Util";
-import {
-  cachingMovieData,
-  getMovieDataFunc,
-} from "@Organism/MainBody/MainBody.util";
-import { useMemo } from "react";
+import { IdType } from "@Common/Type/Data";
 import { useLocation } from "react-router-dom";
 
-export const useGetVideoData: Props = () => {
+export const useGetURLData: Props = () => {
   const { search } = useLocation();
   const { id, titleId } = getUrlData(search);
-  const movieFilterFunc = getMovieHelperFn(id);
-  const getMovieFunc = getMovieDataFunc(titleId, movieFilterFunc);
-  const getMoviesFunc = useMemo(
-    () => getMovieDataFunc(titleId, cachingMovieData(titleId)),
-    [titleId]
-  );
-
-  return [titleId, getMovieFunc, getMoviesFunc];
+  return [id, titleId];
 };
 
-type Props = () => [
-  IdType,
-  wrapPromiseReturnType<MovieDataType[]>,
-  wrapPromiseReturnType<MovieDataType[]>
-];
-
-type helperFnType = (
-  id: IdType
-) => (movies: MovieDataType[]) => MovieDataType[];
-const getMovieHelperFn: helperFnType = (id) => (movies) =>
-  movies.filter(({ movieId }) => movieId == id);
+type Props = () => [IdType, IdType];
 
 type getUrlFnType = (search: string) => {
   id: IdType;
