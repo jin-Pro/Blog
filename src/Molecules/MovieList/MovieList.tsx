@@ -21,7 +21,6 @@ export const MovieList: React.FC<Props> = ({
   type,
 }) => {
   const movies = getMoviesFunc.get();
-
   const handleMovePageFn = useMovePageHook();
   const handleGoVideoPage = useCallback(
     videoClickHelper(handleMovePageFn, titleId),
