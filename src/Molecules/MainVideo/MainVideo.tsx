@@ -19,7 +19,7 @@ export const MainVideo: React.FC<Props> = ({ getMovieFunc }) => {
   );
 };
 
-const MainVideoContainer = styled.div`
+export const MainVideoContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 5% 5% 5%;
