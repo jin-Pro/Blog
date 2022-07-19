@@ -10,3 +10,5 @@ export type MovieDataType = {
   movieTitle: string;
   movieSrc: string;
 };
+
+export type ChildProps = { children: React.ReactNode };

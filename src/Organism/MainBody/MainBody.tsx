@@ -1,21 +1,25 @@
+import React from "react";
 import { Flex } from "@Atom/.";
-import { MainNavBar, MovieList } from "@Molecules/.";
-import { EmptyMovieListContainer } from "@Molecules/MovieList/MovieList.style";
-import { Suspense } from "react";
-import { useGetMoviesData } from "./MainBody.hook";
+import { MainNavBar, MovieList, MovieListProps } from "@Molecules/.";
+import { MoviesContext, useMoviesContext } from "./MainBody.hook";
+import { ChildProps } from "@Common/Type/Data";
 
-export const MainBody: React.FC = () => {
-  const [titleId, handleTitleId] = useGetMoviesData();
+export const MainBody: Props = ({ children }) => {
+  const value = useMoviesContext();
   return (
-    <Flex justify="flex-start" align="none" height="calc(100vh - 275px)">
-      <MainNavBar handleTitleId={handleTitleId} titleId={titleId} />
-      <Suspense
-        fallback={
-          <EmptyMovieListContainer> 로딩중 ...</EmptyMovieListContainer>
-        }
-      >
-        <MovieList titleId={titleId} type="medium" />
-      </Suspense>
-    </Flex>
+    <MoviesContext.Provider value={value}>
+      <Flex justify="flex-start" align="none" height="calc(100vh - 275px)">
+        {children}
+      </Flex>
+    </MoviesContext.Provider>
   );
+};
+
+MainBody.NavBar = MainNavBar;
+MainBody.MovieList = MovieList;
+
+type Props = subComponent & React.FC<ChildProps>;
+type subComponent = {
+  NavBar: React.FC;
+  MovieList: React.FC<MovieListProps>;
 };

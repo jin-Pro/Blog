@@ -1,5 +1,6 @@
+import { ChildProps } from "@Common/Type/Data";
 import styled from "styled-components";
-import { ChildProps } from "..";
+
 
 export const Flex: React.FC<Props> = ({ children, ...props }) => {
   return <FlexContainer {...props}>{children}</FlexContainer>;

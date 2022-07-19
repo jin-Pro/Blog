@@ -1,19 +1,11 @@
-import { Suspense } from "react";
 import { Flex } from "@Atom/.";
-import { MainVideo, MovieList, MainVideoSkeleton } from "@Molecules/.";
-import { useGetURLData } from "./VideoPage.hook";
 import styled from "styled-components";
+import { VideoBody } from "@Organism/.";
 
 export const VideoPage: React.FC = () => {
-  const [id, titleId] = useGetURLData();
   return (
     <VideoPageContainer>
-      <Suspense fallback={<MainVideoSkeleton />}>
-        <MainVideo id={id} titleId={titleId} />
-      </Suspense>
-      <Suspense fallback={<div>사이드 영상</div>}>
-        <MovieList titleId={titleId} type="small" />
-      </Suspense>
+      <VideoBody />
     </VideoPageContainer>
   );
 };
