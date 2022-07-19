@@ -1,17 +1,25 @@
-import { Suspense } from "react";
-import { MainVideo, MovieList, MainVideoSkeleton } from "@Molecules/.";
-import { useGetURLData } from "./VideoBody.hook";
+import {
+  MainVideo,
+  MovieList,
+  MainVideoSkeleton,
+  MovieListProps,
+} from "@Molecules/.";
+import { useVideoInfoContext, VideoDataContext } from "./VideoBody.hook";
+import { ChildProps } from "@Common/Type/Data";
 
-export const VideoBody: React.FC = () => {
-  const [id, titleId] = useGetURLData();
+type SubComponent = {
+  MainVideo: React.FC;
+  MovieList: React.FC<MovieListProps>;
+};
+type Props = SubComponent & React.FC<ChildProps>;
+export const VideoBody: Props = ({ children }) => {
+  const value = useVideoInfoContext();
   return (
-    <>
-      <Suspense fallback={<MainVideoSkeleton />}>
-        <MainVideo id={id} titleId={titleId} />
-      </Suspense>
-      <Suspense fallback={<div>사이드 영상</div>}>
-        <MovieList titleId={titleId} type="small" />
-      </Suspense>
-    </>
+    <VideoDataContext.Provider value={value}>
+      {children}
+    </VideoDataContext.Provider>
   );
 };
+
+VideoBody.MainVideo = MainVideo;
+VideoBody.MovieList = MovieList;
