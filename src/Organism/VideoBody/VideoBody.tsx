@@ -1,9 +1,4 @@
-import {
-  MainVideo,
-  MovieList,
-  MainVideoSkeleton,
-  MovieListProps,
-} from "@Molecules/.";
+import { MainVideo, MovieList, MovieListProps } from "@Molecules/.";
 import { useVideoInfoContext, VideoDataContext } from "./VideoBody.hook";
 import { ChildProps } from "@Common/Type/Data";
 

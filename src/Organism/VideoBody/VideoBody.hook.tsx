@@ -2,7 +2,7 @@ import React from "react";
 import { IdType } from "@Common/Type/Data";
 import { useLocation } from "react-router-dom";
 
-type dataType = { id: IdType; titleId: IdType };
+export type dataType = { id: IdType; titleId: IdType };
 const INIT_DATA: dataType = { id: 1, titleId: 1 };
 export const VideoDataContext = React.createContext(INIT_DATA);
 

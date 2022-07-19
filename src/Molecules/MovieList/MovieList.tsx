@@ -4,7 +4,7 @@ import * as MovieListStyle from "./MovieList.style";
 import { useGetMoviesData, useHandleVideoPage } from "./MovieList.hook";
 
 export const MovieList: React.FC<MovieListProps> = memo(function ({ type }) {
-  const { titleId, movies } = useGetMoviesData();
+  const { titleId, movies } = useGetMoviesData({ type });
   const handleGoVideoPage = useHandleVideoPage(titleId);
   const ContainerComponent = useMemo(
     () =>
